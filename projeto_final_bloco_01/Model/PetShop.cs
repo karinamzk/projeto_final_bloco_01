@@ -6,7 +6,99 @@ using System.Threading.Tasks;
 
 namespace projeto_final_bloco_01_.Model
 {
-    internal class PetShop
+    public abstract class PetShop
     {
+        //Atributos
+        private int id, tipo;
+        private string nome;
+
+        //private string descricao;//
+        private decimal preco;
+
+        //Métodos Construtor 
+        protected PetShop(int id, int tipo, string nome, decimal preco)
+        {
+            this.id = id;
+            this.tipo = tipo;
+            this.nome = nome;
+            this.preco = preco;
+        }
+
+        //Polimorfismo de sobrecarga
+
+        public PetShop() { }
+
+
+        //Métodos GET e SET
+
+        public int GetId()
+        {
+            return id;
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+
+
+        public int GetTipo()
+        {
+            return tipo;
+        }
+
+        public void SetTipo(int tipo)
+        {
+            this.tipo= tipo;
+        }
+
+
+
+        public string GetNome()
+        {
+            return nome;
+        }
+
+        public void SetNome(string name)
+        {
+            this.nome = name;
+        }
+
+
+        public decimal GetPreco()
+        {
+            return preco;
+        }
+
+        public void Setpreco(decimal preco)
+        {
+            this.preco= preco;  
+        }
+
+        public virtual void Visualizar()
+        {
+            string tipo = "";
+
+            switch (this.tipo)
+            {
+                case 1:
+                    tipo = "Racoes";
+                    break;
+                case 2:
+                    tipo = "Medicamento";
+                    break;
+            }
+            Console.WriteLine("*********************************");
+            Console.WriteLine("Dados da Conta");
+            Console.WriteLine("*********************************");
+            Console.WriteLine($"Produto : {this.nome}");
+            Console.WriteLine($"Id : {this.id}");
+            Console.WriteLine($"Tipo : {tipo}");
+            Console.WriteLine($"Preço : {this.preco}");
+            Console.WriteLine("*********************************");
+        }
+
+
     }
 }

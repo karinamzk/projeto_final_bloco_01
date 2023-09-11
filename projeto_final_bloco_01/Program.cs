@@ -1,4 +1,6 @@
-﻿using System;
+﻿using projeto_final_bloco_01_.Controller;
+using projeto_final_bloco_01_.Model;
+using System;
 
 namespace projeto_final_bloco_01_
 {
@@ -8,8 +10,14 @@ namespace projeto_final_bloco_01_
         static void Main(string[] args)
         {
             int id, tipo, opcao;
-            string nome;
+            string nome, UsoPara, Marca;
             decimal preco;
+
+            ProdutoController produtos = new();
+
+            Medicamentos med = new Medicamentos(1, 2, "Antipulgas e Carrapatos", 81.17M, "NexGard");
+
+            Racoes racao = new Racoes(2, 1, "Ração Seca Gatos Adultos Castrados Frango", 172.28M,"Gatos");
 
             while (true)
             {
@@ -77,6 +85,21 @@ namespace projeto_final_bloco_01_
                             Console.WriteLine("Digite o Preço:");
                             preco = Convert.ToInt32(Console.ReadLine());
 
+                        switch (tipo)
+                        {
+                            case 1:
+                                Console.WriteLine("Digite a fragancia da produto: ");
+                                UsoPara = Console.ReadLine();
+
+                                produto.CriarProduto(new Racoes(produto.GerarId(), tipo, nome, preco, UsoPara));
+                                break;
+                            case 2:
+                                Console.WriteLine("Digite se o produto é generico: ");
+                                Marca = Console.ReadLine();
+
+                                produto.CriarProduto(new Medicamentos(produto.GerarId(), tipo, nome, preco, Marca));
+                                break;
+                        }
 
                         KeyPress();
                         break;
@@ -84,6 +107,8 @@ namespace projeto_final_bloco_01_
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Listar todas os Produtos\n\n");
                         Console.ResetColor();
+
+                        produto.ListarTodos();
 
                         KeyPress();
                         break;
@@ -95,6 +120,8 @@ namespace projeto_final_bloco_01_
                         Console.WriteLine("Digite o número da Conta: ");
                         id = Convert.ToInt32(Console.ReadLine());
 
+                        produto.BuscarProduto(id);
+
                         KeyPress();
                         break;
                     case 4:
@@ -105,6 +132,46 @@ namespace projeto_final_bloco_01_
                         Console.WriteLine("Digite o número da Conta: ");
                         id = Convert.ToInt32(Console.ReadLine());
 
+                        var produtos = produto.BuscarColletion(id);
+
+                        if (produto is not null)
+                        {
+                            Console.WriteLine("Digite o nome do produto: ");
+                            nome = Console.ReadLine();
+
+                            nome ??= string.Empty;
+
+                            Console.WriteLine("Digite o Preço do Produto: ");
+                            preco = Convert.ToDecimal(Console.ReadLine());
+
+                            tipo =.Get();
+
+                            switch (tipo)
+                            {
+                                case 1:
+                                    Console.WriteLine("Digite a fragancia da produto: ");
+                                    UsoPara = Console.ReadLine();
+
+                                    Racoes racao = new Racoes(produto.GerarId(), tipo, nome, preco, UsoPara);
+
+                                    produto.AtualizarProduto(racao);
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Digite se o produto é generico: ");
+                                    Marca = Console.ReadLine();
+
+                                    Medicamentos medicamentos = new Medicamentos(produto.GerarId(), tipo, nome, preco, Marca); 
+                                    produto.AtualizarProduto(medicamentos);
+                                    break;
+                            }
+
+                        }else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"O produto {id} não foi encontrado!");
+                            Console.ResetColor();
+                        }
+
                         KeyPress();
                         break;
                     case 5:
@@ -114,9 +181,8 @@ namespace projeto_final_bloco_01_
 
                         Console.WriteLine("Digite o Id do Produto: ");
                         id = Convert.ToInt32(Console.ReadLine());
-
-                        
-
+                        produto.DeletarProduto(id);
+                       
                         KeyPress();
                         break;
                     default:
@@ -126,9 +192,7 @@ namespace projeto_final_bloco_01_
 
                         KeyPress();
                         break;
-
                 }
-
             }
 
             static void sobre()
