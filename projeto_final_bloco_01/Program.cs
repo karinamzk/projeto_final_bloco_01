@@ -133,7 +133,7 @@ namespace projeto_final_bloco_01_
                         Console.WriteLine("Atualizar Produtos \n\n");
                         Console.ResetColor();
 
-                        Console.WriteLine("Digite o número da Conta: ");
+                        Console.WriteLine("Digite o Id do Produto: ");
                         id = Convert.ToInt32(Console.ReadLine());
 
                         var produto = produtos.BuscarColletion(id);
