@@ -6,30 +6,32 @@ using System.Threading.Tasks;
 
 namespace projeto_final_bloco_01_.Model
 {
-    internal class Racoes : PetShop
+    public class Racoes : PetShop
     {
-        public string usoPara;
-        public Racoes(int id, int tipo, string nome, decimal preco, string usoPara) : base(id, tipo, nome, preco)
+        private string animal;
+        
+        public Racoes(int id, int tipo, string nome, decimal preco, string animal) 
+            : base(id, tipo, nome, preco)
         {
-            this.usoPara = usoPara; 
+            this.animal = animal; 
         }
 
         //Métodos Get e Set de UsoPara
 
-        public string GetUsoPara()
+        public string GetAnimal()
         {
-            return usoPara;
+            return animal;
         }
 
-        public void SetUsoPara(string usoPara)
+        public void SetAnimal(string animal)
         {
-            this.usoPara = usoPara;
+            this.animal = animal;
         }
 
         public override void Visualizar()
         {
             base.Visualizar();
-            Console.WriteLine($"Ração para:{usoPara}");
+            Console.WriteLine($"Ração para:{animal}");
         }
     }
 }

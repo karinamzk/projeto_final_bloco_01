@@ -11,8 +11,6 @@ namespace projeto_final_bloco_01_.Model
         //Atributos
         private int id, tipo;
         private string nome;
-
-        //private string descricao;//
         private decimal preco;
 
         //Métodos Construtor 
@@ -26,8 +24,7 @@ namespace projeto_final_bloco_01_.Model
 
         //Polimorfismo de sobrecarga
 
-        public PetShop() { }
-
+        /*public Produto() { }*/
 
         //Métodos GET e SET
 
@@ -83,22 +80,19 @@ namespace projeto_final_bloco_01_.Model
             switch (this.tipo)
             {
                 case 1:
-                    tipo = "Racoes";
+                    tipo = "Rações";
                     break;
                 case 2:
                     tipo = "Medicamento";
                     break;
             }
             Console.WriteLine("*********************************");
-            Console.WriteLine("Dados da Conta");
+            Console.WriteLine("Dados do Produto");
             Console.WriteLine("*********************************");
             Console.WriteLine($"Produto : {this.nome}");
             Console.WriteLine($"Id : {this.id}");
             Console.WriteLine($"Tipo : {tipo}");
             Console.WriteLine($"Preço : {this.preco}");
-            Console.WriteLine("*********************************");
         }
-
-
     }
 }

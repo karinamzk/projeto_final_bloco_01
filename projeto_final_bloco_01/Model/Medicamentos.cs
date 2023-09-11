@@ -9,14 +9,15 @@ namespace projeto_final_bloco_01_.Model
 {
     public class Medicamentos : PetShop
     {
-        public string marca, nome;
-        public Medicamentos(int id, int tipo, string nome, decimal preco, string marca) : base(id, tipo, nome, preco)
+        public string marca;
+        public Medicamentos(int id, int tipo, string nome, decimal preco, string marca) 
+            : base(id, tipo, nome, preco)
         {
-            this.marca = nome;  
+            this.marca = marca;  
         }
 
         //Métodos Get e Set de Marca
-        public string Marca ()
+        public string GetMarca ()
         { 
             return marca; 
         }
@@ -29,7 +30,7 @@ namespace projeto_final_bloco_01_.Model
         public override void Visualizar()
         {
             base.Visualizar();
-            Console.WriteLine($"Marca do Medicamento {nome}: {marca}");
+            Console.WriteLine($"Marca do Medicamento: {marca}");
         }
 
     }

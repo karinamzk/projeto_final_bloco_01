@@ -10,12 +10,11 @@ namespace projeto_final_bloco_01_.Controller
 {
     public class ProdutoController : IProdutoRepository
     {
-
-        private readonly List<PetShop> ListaProduto = new List<PetShop>();
+        private readonly List<PetShop> ListaProduto = new ();
         int id = 0;
 
         //Métodos Crud
-        /*public void AtualizarProduto(PetShop produto)
+        public void AtualizarProduto(PetShop produto)
         {
             var buscarProduto = BuscarColletion(produto.GetId());
 
@@ -26,7 +25,6 @@ namespace projeto_final_bloco_01_.Controller
                 ListaProduto[index] = produto;
 
                 Console.WriteLine($"O Produto {produto.GetId()} foi atualizado!");
-
             }
             else
             {
@@ -34,18 +32,9 @@ namespace projeto_final_bloco_01_.Controller
                 Console.WriteLine($"O Produto {id} não foi encontrado!");
                 Console.ResetColor();
             }
-        } */
-
-        private PetShop? BuscarColletion(int id)
-        {
-            foreach (var produto in ListaProduto)
-            {
-                if (produto.GetId() == id)
-                    return produto;
-            }
-            return null;
         }
 
+       
         public void BuscarProduto(int id)
         {
             var produto = BuscarColletion(id);
@@ -56,17 +45,18 @@ namespace projeto_final_bloco_01_.Controller
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"O Produto {id} não foi encontrado!");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"A Conta {id} não foi encontrada!");
                 Console.ResetColor();
-                        
             }
         }
-        public void CriarProduto(PetShop p)
+
+        public void CriarProduto(PetShop produto)
         {
-            ListaProduto.Add(p);  
-            Console.WriteLine($"O Produto{p.GetId()} foi criado com sucesso!");
+            ListaProduto.Add(produto);
+            Console.WriteLine($"O Produto {produto.GetId()} foi criado com sucesso!");
         }
+
 
         public void DeletarProduto(int id)
         {
@@ -87,52 +77,29 @@ namespace projeto_final_bloco_01_.Controller
 
         public void ListarTodos()
         {
-            foreach(var p in ListaProduto)
+            foreach(var produto in ListaProduto)
             {
-                p.Visualizar();
+                produto.Visualizar();
             }
         }
+
+        //Métodos 
         public int GerarId()
         {
             return ++id;
         }
 
-        public void BuscarProduto(PetShop produto)
+        public PetShop? BuscarColletion(int numero)
         {
-            var produto = BuscarColletion(id);
-
-            if (produto is not null)
+            foreach (var produto in ListaProduto)
             {
-                produto.Visualizar();
+                if (produto.GetId() == id)
+                    return produto;
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"O Produto {id} não foi encontrado!");
-                Console.ResetColor();
-
-            }
+            return null;
         }
 
-        public void AtualizarProduto(PetShop produto)
-        {
-            var buscarProduto = BuscarColletion(produto.GetId());
-
-            if (buscarProduto is not null)
-            {
-                var index = ListaProduto.IndexOf(buscarProduto);
-
-                ListaProduto[index] = produto;
-
-                Console.WriteLine($"O Produto {produto.GetId()} foi atualizado!");
-
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"O Produto {id} não foi encontrado!");
-                Console.ResetColor();
-            }
-        }
     }
+
 }
+

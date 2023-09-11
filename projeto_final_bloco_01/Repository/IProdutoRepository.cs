@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace projeto_final_bloco_01_.Repository
 {
-    public   interface IProdutoRepository
+    public interface IProdutoRepository
     {
         public void CriarProduto(PetShop produto);
 
         public void ListarTodos();
 
-        public void BuscarProduto(PetShop produto);
+        public void BuscarProduto(int id);
 
-        public void AtualizarProduto();
+        public void AtualizarProduto(PetShop produto);
 
         public void DeletarProduto(int id);
      
